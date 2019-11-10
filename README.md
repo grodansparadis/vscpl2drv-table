@@ -1061,7 +1061,32 @@ You can read more about tables [here](./vscp-tables.md).
 
 ----
 
+## Install the driver on Linux
+tbd
 
+## Install the driver on Windows
+tbd
+
+## How to build the driver on Linux
+To build this driver you to clone the driver source
+
+```
+git clone --recurse-submodules -j8 https://github.com/grodansparadis/vscpl2drv-table.git
+cd vscpl2drv-automation
+./configure
+make
+make install
+```
+
+Default install folder is */usr/local/lib*
+
+You need build-essentials and git installed on your system
+
+>sudo apt update && sudo apt -y upgrade
+>sudo apt install build-essential git
+
+## How to build the driver on Windows
+tbd
 
 
 
