@@ -41,7 +41,7 @@ The in memory type is very fast but is of course not persistent over time.
 
 #### VSCP daemon driver config
 
-The VSCP daemon configuration is (normally) located at */etc/vscp/vscpd.conf*. To use the vscpl2drv-automation driver there must be an entry in the
+The VSCP daemon configuration is (normally) located at */etc/vscp/vscpd.conf*. To use the vscpl2drv-table driver there must be an entry in the
 
 ```
 > <level2driver enable="true">
@@ -50,7 +50,7 @@ The VSCP daemon configuration is (normally) located at */etc/vscp/vscpd.conf*. T
 section on the following format
 
 ```xml
-<!-- Level II automation -->
+<!-- Level II table -->
 <driver enable="false"
     name="table"
     path="/usr/bin/vscpl2drv-table.so"
@@ -1072,7 +1072,7 @@ To build this driver you to clone the driver source
 
 ```
 git clone --recurse-submodules -j8 https://github.com/grodansparadis/vscpl2drv-table.git
-cd vscpl2drv-automation
+cd vscpl2drv-table
 ./configure
 make
 make install
