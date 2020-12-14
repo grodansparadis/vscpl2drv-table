@@ -23,9 +23,9 @@ The collected data can be reached over
 
 *  The tcp/ip interface.
 *  The websocket interface.
-*  You can also read/write table data from Javascripts and LUA scripts in the built in web server of the VSCP daemon.
+*  MQTT
 
-The interfaces allow tyu to do statistical analysis of the data but the main use for the collected data is to display it in a user interface element such as a diagram or a table. The way VSCP handles measurements one display solution will work for all types of measurements. For a JavaScript application data over specific ranges or hole (static) tables can be fetched in an easy way over the tcp/ip or the websocket API's. Examples are provided. For higher level languages such as C/C++/C#/Java/Python etc the VSCP helper library is a great tool to fetch datasets.
+The interfaces allow you to do statistical analysis of the data but the main use for the collected data is to display it in a user interface element such as a diagram or a table. The way VSCP handles measurements one display solution will work for all types of measurements. For a JavaScript application data over specific ranges or hole (static) tables can be fetched in an easy way over the tcp/ip or the websocket API's. Examples are provided. For higher level languages such as C/C++/C#/Java/Python etc the VSCP helper library is a great tool to fetch datasets.
 
 Tables are by default stored in
 
@@ -44,16 +44,17 @@ The in memory type is very fast but is of course not persistent over time.
 The VSCP daemon configuration is (normally) located at */etc/vscp/vscpd.conf*. To use the vscpl2drv-table driver there must be an entry in the
 
 ```
-> <level2driver enable="true">
+
 ```
 
 section on the following format
 
 ```xml
 <!-- Level II table -->
-<driver enable="false"
+<driver enable="true"
     name="table"
-    path="/usr/bin/vscpl2drv-table.so"
+    driver-path="/var/lib/vscp/drivers/level2/vscpl2drv-table.so"
+    config-path="/var/lib/vscp/vscp-table-drv.json"
     guid="FF:FF:FF:FF:FF:FF:FF:FC:88:99:AA:BB:CC:DD:EE:FF"
 </driver>
 ```
@@ -64,13 +65,16 @@ Set enable to "true" if the driver should be loaded.
 ##### name
 This is the name of the driver. Used when referring to it in different interfaces.
 
-##### path
+##### driver-path
 This is the path to the driver. If you install from a Debian package this will be */usr/bin/vscpl2drv-table.so* and if you build and install the driver yourself it will be */usr/local/bin/vscpl2drv-table.so* or a custom location if you configured that.
+
+#### config-path
+The path to the JSON configuration file for the driver
 
 ##### guid
 All level II drivers must have a unique GUID. There is many ways to obtain this GUID, Read more [here](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_globally_unique_identifiers.html).
 
-#### vscpl2drv-teble driver config
+#### vscpl2drv-table driver config
 
 On start up the configuration is read from the path set in the driver configuration of the VSCP daemon, usually */etc/vscp/conf-file-name* and values are set from this location. If the **write** parameter is set to "true" the above location is a bad choice as the VSCP daemon will not be able to write to it. A better location is */var/lib/vscp/drivername/configure.xml* or some other writable location in this cased.
 
