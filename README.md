@@ -339,7 +339,7 @@ You can read the following remote variable values from the vscpl2drv-table drive
 | save | Save configuration to disk (if writable) |
 | load | Load configuration from disk |
 
-With table commands you can write and readetc table data. You can also create/delete/manage tables-
+With table commands you can write and read table data. You can also create/delete/manage tables-
 
 The VSCP daemon can handle three types of tables.
 
