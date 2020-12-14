@@ -72,11 +72,11 @@ This is the path to the driver. If you install from a Debian package this will b
 The path to the JSON configuration file for the driver
 
 ##### guid
-All level II drivers must have a unique GUID. There is many ways to obtain this GUID, Read more [here](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_globally_unique_identifiers.html).
+All level II drivers must have a unique GUID. There is many ways to obtain this GUID, Read more [here](https://grodansparadis.github.io/vscp-doc-spec/#/./vscp_globally_unique_identifiers).
 
 #### vscpl2drv-table driver config
 
-On start up the configuration is read from the path set in the driver configuration of the VSCP daemon, usually */etc/vscp/conf-file-name* and values are set from this location. If the **write** parameter is set to "true" the above location is a bad choice as the VSCP daemon will not be able to write to it. A better location is */var/lib/vscp/drivername/configure.xml* or some other writable location in this cased.
+On start up the configuration is read from the path set in the driver configuration of the VSCP daemon, usually */etc/vscp/conf-file-name* and values are set from this location. If the **write** parameter is set to "true" the above location is a bad choice as the VSCP daemon will not be able to write to it. A better location is */var/lib/vscp/drivername/config.xml* or some other writable location in this cased.
 
 You can define and configure tables in the driver configuration file and manipulate and save configurations with HLO (high level object) events.
 
@@ -145,7 +145,7 @@ Enter the subzone that should be used for events from the driver. Any number is 
     description="Description of database" />
 ```
 
-This is the definition of a table. It defines the information for the table and what VSCP measuremeny event that should be collected.
+This is the definition of a table. It defines the information for the table and what VSCP measurement event that should be collected.
 
 ##### enable
 
@@ -157,7 +157,7 @@ This is the name of the table. It must be unique in the system and this is also 
 
 ##### bmemory
 
-If bMemory is set to true (bMemory="true") the database will be created in memory. This s a very fast database but the data will be lost when the VSCP daemon is restarted. Care must also be taken on how much you let this database grow in size and therefore it may we wise to make this database static.
+If bMemory is set to true (bMemory="true") the database will be created in memory. This is a very fast database but the collected data will be lost when the driver is restarted. Care must also be taken on how much you let this database grow in size and therefore it may we wise to make this database static.
 
 If set to "false" (bMemory="false") the database will be created on disk. This means it will be possible to work with by other tools as well and that it is persistent over time.
 
